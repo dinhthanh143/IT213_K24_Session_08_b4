@@ -1,0 +1,31 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: crm-chat-service
+  datasource:
+    url: jdbc:postgresql://aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?sslmode=require
+    username: postgres.your_project_id
+    password: YourSecurePassword
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 4
+      minimum-idle: 2
+      idle-timeout: 30000
+      connection-timeout: 20000
+
+  ai:
+    vectorstore:
+      pgvector:
+        table-name: vector_store
+        dimension: 768
+        initialize-schema: true
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2
+      embedding:
+        options:
+          model: nomic-embed-text
